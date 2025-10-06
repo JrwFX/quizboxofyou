@@ -1,0 +1,92 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(120deg, #fceabb, #f8b500);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  padding: 30px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.8rem;
+  color: #f8b500;
+  margin-bottom: 20px;
+}
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+}
+
+.question {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option {
+  background: #fef7e0;
+  border: 2px solid #f8b500;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.option:hover {
+  background: #ffe083;
+}
+
+/* This is the new style for the selected option */
+.option.selected {
+  background: #f8b500;
+  color: white;
+  border-color: #fceabb;
+}
+
+.navigation-btns {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn {
+  background: #f8b500;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  /* margin-top is removed from here and added to the container */
+}
+
+.btn.hidden {
+  display: none;
+}
+
+.result-card {
+  padding: 20px;
+  border-radius: 10px;
+  background: #fff3cd;
+  color: #333;
+  font-size: 1.2rem;
+}

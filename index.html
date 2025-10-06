@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Box of You - Personality Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">🎁 Box of You</h1>
+
+    <div id="quiz">
+      <div id="age-screen" class="screen active">
+        <p class="question">Masukkan umur kamu:</p>
+        <input type="number" id="age-input" placeholder="Contoh: 21" />
+        <button id="start-btn" class="btn">Mulai</button>
+      </div>
+
+      <div id="question-screen" class="screen">
+        <p id="question-text" class="question"></p>
+        <div id="options" class="options"></div>
+        <div class="navigation-btns">
+          <button id="prev-btn" class="btn hidden">⬅️ Kembali</button>
+          <button id="next-btn" class="btn hidden">Lanjut ➜</button>
+        </div>
+      </div>
+
+      <div id="result-screen" class="screen">
+        <h2>Hasil Kepribadian Kamu 🎉</h2>
+        <div id="result-card" class="result-card"></div>
+        <button id="restart-btn" class="btn">Ulangi Quiz</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
