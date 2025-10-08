@@ -1,5 +1,5 @@
 // Paste your Web App URL from Google Apps Script here
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbyDi0dThP5MjZAMQt5eekqwFjwuNVJKh2cXXWQt0joqsUhuJD9cT37QGIJvZEkz3d4bpA/exec';
+const GAS_URL = 'YOUR_WEB_APP_URL_HERE'; // Make sure to replace this with your actual URL!
 
 const quizData = [
   {
@@ -48,7 +48,7 @@ const quizData = [
 ];
 
 let currentQ = 0;
-let userAge = 0; // Variable to store user's age
+let userAge = 0;
 let answers = [];
 let scores = { Jolly: 0, Snip: 0, Slick: 0, Buck: 0 };
 
@@ -63,11 +63,12 @@ const prevBtn = document.getElementById("prev-btn");
 const startBtn = document.getElementById("start-btn");
 const restartBtn = document.getElementById("restart-btn");
 const resultCard = document.getElementById("result-card");
+const personalityImage = document.getElementById("personality-image");
 
 startBtn.addEventListener("click", () => {
   const ageInput = document.getElementById("age-input").value;
   if (!ageInput) return alert("Isi umur dulu ya!");
-  userAge = ageInput; // Save the age
+  userAge = ageInput;
   ageScreen.classList.remove("active");
   questionScreen.classList.add("active");
   showQuestion();
@@ -146,25 +147,50 @@ function selectOption(opt, selectedButton) {
 async function showResult() {
   questionScreen.classList.remove("active");
   resultScreen.classList.add("active");
-  resultCard.innerHTML = `<p>Menghitung hasil...</p>`;
+  resultCard.innerHTML = `
+    <img id="personality-image" src="" alt="Personality Image" class="personality-img">
+    <p>Menghitung dan menyimpan hasil...</p>
+  `;
 
   const topPersonality = Object.keys(scores).reduce((a, b) =>
     scores[a] > scores[b] ? a : b
   );
 
-  // Prepare the data to be sent
+  let imagePath = '';
+  switch (topPersonality) {
+    case 'Buck':
+      imagePath = '01 BUCK.png';
+      break;
+    case 'Slick':
+      imagePath = '02 SLICK.png';
+      break;
+    case 'Jolly':
+      imagePath = '03 JOLLY.png';
+      break;
+    case 'Snip':
+      imagePath = '04 SNIP.png';
+      break;
+    default:
+      imagePath = '';
+  }
+
+  // Baris '<h3>' telah dihapus dari sini
+  resultCard.innerHTML = `
+    <img id="personality-image" src="${imagePath}" alt="${topPersonality} Personality" class="personality-img">
+    <p>Kepribadian kamu mirip dengan karakter <strong>${topPersonality}</strong>! Hasil telah disimpan.</p>
+  `;
+
   const dataToSend = {
     age: userAge,
-    gender: answers[0].value, // Get gender from the first answer
+    gender: answers[0].value,
     finalPersonality: topPersonality,
     scores: scores,
   };
 
   try {
-    // Send the data to your Google Apps Script URL
     await fetch(GAS_URL, {
       method: 'POST',
-      mode: 'no-cors', // Important for GAS to avoid CORS errors
+      mode: 'no-cors',
       cache: 'no-cache',
       headers: {
         'Content-Type': 'application/json',
@@ -174,11 +200,5 @@ async function showResult() {
     });
   } catch (error) {
     console.error('Error saving data:', error);
-  } finally {
-    // Display the final result after trying to save
-    resultCard.innerHTML = `
-      <h3>${topPersonality}</h3>
-      <p>Kepribadian kamu mirip dengan karakter <strong>${topPersonality}</strong>!</p>
-    `;
   }
 }
