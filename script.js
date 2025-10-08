@@ -149,7 +149,7 @@ async function showResult() {
   resultScreen.classList.add("active");
   resultCard.innerHTML = `
     <img id="personality-image" src="" alt="Personality Image" class="personality-img">
-    <p>Menghitung dan menyimpan hasil...</p>
+    <p>Menghitung hasil...</p>
   `;
 
   const topPersonality = Object.keys(scores).reduce((a, b) =>
@@ -177,7 +177,7 @@ async function showResult() {
   // Baris '<h3>' telah dihapus dari sini
   resultCard.innerHTML = `
     <img id="personality-image" src="${imagePath}" alt="${topPersonality} Personality" class="personality-img">
-    <p>Kepribadian kamu mirip dengan karakter <strong>${topPersonality}</strong>! Hasil telah disimpan.</p>
+    <p>Kepribadian kamu mirip dengan karakter <strong>${topPersonality}</strong>!</p>
   `;
 
   const dataToSend = {
