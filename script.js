@@ -146,7 +146,7 @@ function selectOption(opt, selectedButton) {
 async function showResult() {
   questionScreen.classList.remove("active");
   resultScreen.classList.add("active");
-  resultCard.innerHTML = `<p>Menghitung dan menyimpan hasil...</p>`;
+  resultCard.innerHTML = `<p>Menghitung hasil...</p>`;
 
   const topPersonality = Object.keys(scores).reduce((a, b) =>
     scores[a] > scores[b] ? a : b
@@ -178,7 +178,7 @@ async function showResult() {
     // Display the final result after trying to save
     resultCard.innerHTML = `
       <h3>${topPersonality}</h3>
-      <p>Kepribadian kamu mirip dengan karakter <strong>${topPersonality}</strong>! Hasil telah disimpan.</p>
+      <p>Kepribadian kamu mirip dengan karakter <strong>${topPersonality}</strong>!</p>
     `;
   }
 }
