@@ -68,6 +68,10 @@ body {
   margin-top: 20px;
 }
 
+#next-btn {
+  margin-left: auto;
+}
+
 .btn {
   background: #f8b500;
   color: white;
